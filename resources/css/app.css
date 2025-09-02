@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --agoda-blue: #003580;
+  --agoda-yellow: #FFB700;
+  --agoda-light-blue: #1A4FA3;
+  --agoda-gray: #f5f7fa;
+}
+
+/* Agoda themed utilities */
+.agoda-bg-primary { background-color: var(--agoda-blue); }
+.agoda-text-primary { color: var(--agoda-blue); }
+.agoda-border-primary { border-color: var(--agoda-blue); }
+.agoda-bg-accent { background-color: var(--agoda-yellow); }
+.agoda-text-accent { color: var(--agoda-yellow); }
+.agoda-btn-primary { @apply text-white font-medium px-4 py-2 rounded-md; background-color: var(--agoda-blue); }
+.agoda-btn-primary:hover { background-color: var(--agoda-light-blue); }
+.agoda-btn-accent { @apply text-black font-medium px-4 py-2 rounded-md; background-color: var(--agoda-yellow); }
+.agoda-card { @apply bg-white rounded-xl shadow-md; }
+.agoda-input { @apply border rounded-md px-3 py-2 w-full; border-color: #d1d5db; }
+.agoda-input:focus { outline: none; box-shadow: 0 0 0 2px rgba(0,53,128,0.15); border-color: var(--agoda-light-blue); }
+.agoda-header { @apply text-white; background-color: var(--agoda-blue); }
+.agoda-link { @apply underline; color: var(--agoda-light-blue); }
