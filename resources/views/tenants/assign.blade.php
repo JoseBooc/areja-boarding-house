@@ -1,8 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="max-w-2xl agoda-card p-6">
-    <h2 class="text-xl font-semibold agoda-text-primary mb-4">Assign/Change Room for {{ $tenant->name }}</h2>
+<div class="max-w-2xl agoda-card overflow-hidden">
+    <div class="agoda-card-header">
+        <h2 class="text-xl font-semibold">Assign/Change Room for {{ $tenant->name }}</h2>
+    </div>
+    <div class="agoda-card-body">
     <form action="{{ route('tenants.assign', $tenant) }}" method="POST" class="grid grid-cols-1 gap-4">
         @csrf
         <div>
@@ -19,9 +22,10 @@
             <input type="date" name="start_date" class="agoda-input mt-1" value="{{ now()->toDateString() }}">
         </div>
         <div class="flex justify-end gap-3 mt-2">
-            <a href="{{ route('tenants.edit', $tenant) }}" class="agoda-btn-accent">Cancel</a>
+            <a href="{{ route('tenants.edit', $tenant) }}" class="agoda-btn-outline">Cancel</a>
             <button class="agoda-btn-primary">Save Assignment</button>
         </div>
     </form>
+    </div>
 </div>
 @endsection
