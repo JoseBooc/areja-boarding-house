@@ -23,22 +23,29 @@
     </div>
 </form>
 <div class="agoda-card overflow-hidden">
-    <table class="min-w-full divide-y divide-gray-200">
-        <thead class="bg-gray-50">
+    <div class="overflow-x-auto">
+    <table class="agoda-table">
+        <thead class="agoda-thead">
             <tr>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Room</th>
-                <th class="px-6 py-3"></th>
+                <th class="agoda-th">Name</th>
+                <th class="agoda-th">Email</th>
+                <th class="agoda-th">Room</th>
+                <th class="agoda-th"></th>
             </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
             @foreach ($tenants as $t)
-                <tr>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ $t->name }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ $t->email }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ optional(optional($t->activeAssignment)->room)->number ?? '—' }}</td>
-                    <td class="px-6 py-4 text-right">
+                <tr class="hover:bg-gray-50">
+                    <td class="agoda-td">{{ $t->name }}</td>
+                    <td class="agoda-td">{{ $t->email }}</td>
+                    <td class="agoda-td">
+                        @if(optional($t->activeAssignment)->room)
+                            <span class="agoda-badge agoda-badge-info">#{{ $t->activeAssignment->room->number }}</span>
+                        @else
+                            <span class="text-gray-400">—</span>
+                        @endif
+                    </td>
+                    <td class="agoda-td text-right">
                         <a href="{{ route('tenants.edit', $t) }}" class="agoda-link mr-3">Edit</a>
                         <a href="{{ route('tenants.assign.form', $t) }}" class="agoda-link">Assign/Change Room</a>
                     </td>
@@ -46,6 +53,7 @@
             @endforeach
         </tbody>
     </table>
+    </div>
 </div>
 <div class="mt-4">{{ $tenants->links() }}</div>
 @endsection
