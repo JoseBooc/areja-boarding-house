@@ -1,10 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="min-h-[80vh] flex items-center justify-center">
-<div class="max-w-md mx-auto agoda-card p-6">
-    <h1 class="text-2xl font-semibold agoda-text-primary mb-4">Sign in</h1>
-    <p class="text-gray-600 mb-6">Admin access required to manage users.</p>
+<div class="min-h-[80vh] flex items-center justify-center bg-[var(--agoda-gray)]">
+<div class="max-w-md mx-auto agoda-card overflow-hidden">
+    <div class="agoda-card-header">
+        <h1 class="text-2xl font-semibold">Sign in</h1>
+        <p class="opacity-90">Welcome back to Areja Boarding House</p>
+    </div>
+    <div class="agoda-card-body">
     <form action="{{ route('login.attempt') }}" method="POST" class="space-y-4">
         @csrf
         <div>
@@ -23,6 +26,7 @@
             <button class="agoda-btn-primary">Sign in</button>
         </div>
     </form>
+    </div>
 </div>
 </div>
 @endsection
