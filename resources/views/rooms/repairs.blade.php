@@ -1,18 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="flex items-center justify-between mb-6">
-    <h1 class="text-2xl font-semibold agoda-text-primary">Rooms Needing Repairs</h1>
+<div class="agoda-hero mb-6">
+    <h1 class="text-2xl font-semibold">Maintenance queue</h1>
+    <p class="opacity-90">Rooms flagged as needing repairs.</p>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
     @forelse ($rooms as $room)
         <div class="agoda-card p-4">
-            <div class="text-lg font-semibold mb-1">Room {{ $room->number }}</div>
+            <div class="flex items-center justify-between mb-1">
+                <div class="text-lg font-semibold">Room {{ $room->number }}</div>
+                <span class="agoda-badge agoda-badge-danger">Needs Repair</span>
+            </div>
             @if($room->type)
                 <p class="text-gray-600 mb-1">Type: {{ $room->type }}</p>
             @endif
             <p class="text-gray-600 mb-1">Status: {{ ucfirst($room->status) }}</p>
-            <p class="text-red-600">Marked as needing repair</p>
         </div>
     @empty
         <div class="agoda-card p-6">No rooms are currently marked for repairs.</div>
