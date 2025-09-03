@@ -10,23 +10,23 @@
 <header class="agoda-header">
     <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
         <a href="{{ route('dashboard') }}" class="text-xl font-semibold">Areja Boarding House</a>
-        <nav class="flex items-center gap-4">
+        <nav class="flex items-center gap-1">
             @auth
-                <a href="{{ route('dashboard') }}" class="agoda-btn-accent">Dashboard</a>
+                <a href="{{ route('dashboard') }}" class="agoda-nav-link {{ request()->routeIs('dashboard*') ? 'agoda-nav-link-active' : '' }}">Dashboard</a>
                 @can('manage-tenants')
-                    <a href="{{ route('tenants.index') }}" class="agoda-btn-accent">Tenants</a>
+                    <a href="{{ route('tenants.index') }}" class="agoda-nav-link {{ request()->routeIs('tenants*') ? 'agoda-nav-link-active' : '' }}">Tenants</a>
                 @endcan
-                <a href="{{ route('rooms.availability') }}" class="agoda-btn-accent">Availability</a>
+                <a href="{{ route('rooms.availability') }}" class="agoda-nav-link {{ request()->routeIs('rooms.availability') ? 'agoda-nav-link-active' : '' }}">Availability</a>
                 @can('view-repairs')
-                    <a href="{{ route('rooms.repairs') }}" class="agoda-btn-accent">Repairs</a>
+                    <a href="{{ route('rooms.repairs') }}" class="agoda-nav-link {{ request()->routeIs('rooms.repairs') ? 'agoda-nav-link-active' : '' }}">Repairs</a>
                 @endcan
-                <form action="{{ route('logout') }}" method="POST">
+                <form action="{{ route('logout') }}" method="POST" class="ml-2">
                     @csrf
                     <button type="submit" class="agoda-btn-accent">Logout</button>
                 </form>
             @endauth
             @guest
-                <a href="{{ route('rooms.availability') }}" class="agoda-btn-accent">Availability</a>
+                <a href="{{ route('rooms.availability') }}" class="agoda-nav-link {{ request()->routeIs('rooms.availability') ? 'agoda-nav-link-active' : '' }}">Availability</a>
             @endguest
         </nav>
     </div>
