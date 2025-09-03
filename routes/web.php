@@ -18,6 +18,7 @@ use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\TenantController;
 use App\Http\Controllers\RoomAssignmentController;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\DashboardController;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -26,6 +27,18 @@ Route::get('/', function () {
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.attempt');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard/admin', [DashboardController::class, 'admin'])->name('dashboard.admin');
+    Route::get('/dashboard/staff', [DashboardController::class, 'staff'])->name('dashboard.staff');
+    Route::get('/dashboard/tenant', [DashboardController::class, 'tenant'])->name('dashboard.tenant');
+
+    Route::middleware('can:tenant-self')->group(function () {
+        Route::view('/tenant/utilities', 'tenant.utilities')->name('tenant.utilities');
+        Route::view('/tenant/rent', 'tenant.rent')->name('tenant.rent');
+    });
+});
 
 Route::middleware(['auth', 'can:manage-users'])->group(function () {
     Route::get('/users', [UserManagementController::class, 'index'])->name('users.index');

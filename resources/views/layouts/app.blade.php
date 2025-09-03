@@ -9,9 +9,10 @@
 <body class="min-h-screen bg-[var(--agoda-gray)]">
 <header class="agoda-header">
     <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-        <a href="{{ route('users.index') }}" class="text-xl font-semibold">Dormitory Admin</a>
+        <a href="{{ route('dashboard') }}" class="text-xl font-semibold">Areja Boarding House</a>
         <nav class="flex items-center gap-4">
             @auth
+                <a href="{{ route('dashboard') }}" class="agoda-btn-accent">Dashboard</a>
                 @can('manage-tenants')
                     <a href="{{ route('tenants.index') }}" class="agoda-btn-accent">Tenants</a>
                 @endcan
