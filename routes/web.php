@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-use App\\Http\\Controllers\\AuthController;
-use App\\Http\\Controllers\\UserManagementController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserManagementController;
 
 Route::get('/', function () {
     return redirect()->route('login');
