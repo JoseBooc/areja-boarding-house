@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserManagementController;
+use App\Http\Controllers\TenantController;
+use App\Http\Controllers\RoomAssignmentController;
+use App\Http\Controllers\RoomController;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -32,3 +35,15 @@ Route::middleware(['auth', 'can:manage-users'])->group(function () {
     Route::put('/users/{user}', [UserManagementController::class, 'update'])->name('users.update');
     Route::delete('/users/{user}', [UserManagementController::class, 'destroy'])->name('users.destroy');
 });
+
+Route::middleware(['auth', 'can:manage-tenants'])->group(function () {
+    Route::get('/tenants', [TenantController::class, 'index'])->name('tenants.index');
+    Route::get('/tenants/{tenant}/edit', [TenantController::class, 'edit'])->name('tenants.edit');
+    Route::put('/tenants/{tenant}', [TenantController::class, 'update'])->name('tenants.update');
+
+    Route::get('/tenants/{tenant}/assign', [RoomAssignmentController::class, 'assignForm'])->name('tenants.assign.form');
+    Route::post('/tenants/{tenant}/assign', [RoomAssignmentController::class, 'assign'])->name('tenants.assign');
+});
+
+Route::get('/rooms/availability', [RoomController::class, 'availability'])->name('rooms.availability');
+Route::middleware(['auth', 'can:view-repairs'])->get('/rooms/repairs', [RoomController::class, 'repairs'])->name('rooms.repairs');

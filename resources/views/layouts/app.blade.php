@@ -12,6 +12,13 @@
         <a href="{{ route('users.index') }}" class="text-xl font-semibold">Dormitory Admin</a>
         <nav class="flex items-center gap-4">
             @auth
+                @can('manage-tenants')
+                    <a href="{{ route('tenants.index') }}" class="agoda-btn-accent">Tenants</a>
+                @endcan
+                <a href="{{ route('rooms.availability') }}" class="agoda-btn-accent">Availability</a>
+                @can('view-repairs')
+                    <a href="{{ route('rooms.repairs') }}" class="agoda-btn-accent">Repairs</a>
+                @endcan
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
                     <button type="submit" class="agoda-btn-accent">Logout</button>
