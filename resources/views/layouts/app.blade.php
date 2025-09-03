@@ -24,6 +24,9 @@
                     <button type="submit" class="agoda-btn-accent">Logout</button>
                 </form>
             @endauth
+            @guest
+                <a href="{{ route('rooms.availability') }}" class="agoda-btn-accent">Availability</a>
+            @endguest
         </nav>
     </div>
 </header>
