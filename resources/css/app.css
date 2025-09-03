@@ -15,11 +15,48 @@
 .agoda-border-primary { border-color: var(--agoda-blue); }
 .agoda-bg-accent { background-color: var(--agoda-yellow); }
 .agoda-text-accent { color: var(--agoda-yellow); }
-.agoda-btn-primary { @apply text-white font-medium px-4 py-2 rounded-md; background-color: var(--agoda-blue); }
+
+/* Buttons */
+.agoda-btn-primary { @apply text-white font-medium px-4 py-2 rounded-md transition-colors; background-color: var(--agoda-blue); }
 .agoda-btn-primary:hover { background-color: var(--agoda-light-blue); }
-.agoda-btn-accent { @apply text-black font-medium px-4 py-2 rounded-md; background-color: var(--agoda-yellow); }
+.agoda-btn-accent { @apply text-black font-medium px-4 py-2 rounded-md transition-colors; background-color: var(--agoda-yellow); }
+.agoda-btn-outline { @apply font-medium px-4 py-2 rounded-md border; border-color: var(--agoda-blue); color: var(--agoda-blue); }
+.agoda-btn-outline:hover { background-color: rgba(0,53,128,0.06); }
+
+/* Cards */
 .agoda-card { @apply bg-white rounded-xl shadow-md; }
+.agoda-card-header { @apply px-6 py-4 rounded-t-xl text-white; background-color: var(--agoda-blue); }
+.agoda-card-body { @apply p-6; }
+
+/* Inputs */
 .agoda-input { @apply border rounded-md px-3 py-2 w-full; border-color: #d1d5db; }
 .agoda-input:focus { outline: none; box-shadow: 0 0 0 2px rgba(0,53,128,0.15); border-color: var(--agoda-light-blue); }
+
+/* Header / Navbar */
 .agoda-header { @apply text-white; background-color: var(--agoda-blue); }
+.agoda-nav-link { @apply inline-flex items-center px-3 py-2 rounded-md text-white/90 hover:text-white transition-colors; }
+.agoda-nav-link-active { @apply bg-white/10 text-white; }
+
+/* Links */
 .agoda-link { @apply underline; color: var(--agoda-light-blue); }
+
+/* Badges */
+.agoda-badge { @apply inline-flex items-center px-2 py-0.5 rounded text-xs font-medium; }
+.agoda-badge-success { @apply bg-green-100 text-green-800; }
+.agoda-badge-info { @apply bg-blue-100 text-blue-800; }
+.agoda-badge-warn { @apply bg-yellow-100 text-yellow-800; }
+.agoda-badge-danger { @apply bg-red-100 text-red-800; }
+
+/* Tables */
+.agoda-table { @apply min-w-full divide-y divide-gray-200; }
+.agoda-thead { @apply bg-gray-50; }
+.agoda-th { @apply px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider; }
+.agoda-td { @apply px-6 py-4 whitespace-nowrap; }
+
+/* Hero */
+.agoda-hero { @apply rounded-xl p-6 text-white shadow-md; background: linear-gradient(135deg, var(--agoda-blue), var(--agoda-light-blue)); }
+
+/* Stats */
+.agoda-stat { @apply agoda-card p-5; }
+.agoda-stat-value { @apply text-2xl font-semibold agoda-text-primary; }
+.agoda-stat-label { @apply text-gray-500; }
